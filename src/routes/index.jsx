@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router'
+import { createBrowserRouter, createHashRouter } from 'react-router'
 import App from '@/App.jsx'
 import HomePage from '@/pages/HomePage.jsx'
 import LoginPage from '@/pages/LoginPage.jsx'
@@ -10,20 +10,20 @@ import RegisterPage from '@/pages/RegisterPage'
 import Cart from '@/pages/Cart'
 import UserComment from '@/pages/components/UserComment'
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: '/',
     Component: App,
     children: [
-      { index: true, Component: HomePage },
-      { path: 'login', Component: LoginPage },
-      { path: 'register', Component: RegisterPage },
-      { path: 'market', Component: Market },
-      { path: 'memberInfo', Component: MemberInfo },
-      { path: 'my-posts', Component: MyPosts },
-      { path: 'new-post', Component: NewPost },
-      { path: 'cart', Component: Cart },
-      { path: 'comment', Component: UserComment },
+      { index: true, element: HomePage },
+      { path: 'login', element: LoginPage },
+      { path: 'register', element: RegisterPage },
+      { path: 'market', element: Market },
+      { path: 'memberInfo', element: MemberInfo },
+      { path: 'my-posts', element: MyPosts },
+      { path: 'new-post', element: NewPost },
+      { path: 'cart', element: Cart },
+      { path: 'comment', element: UserComment },
     ],
   },
 ])
