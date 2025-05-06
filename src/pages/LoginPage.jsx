@@ -20,20 +20,18 @@ function LoginPage() {
   return (
     <>
       <div className="mx-auto flex h-full flex-col items-center justify-center p-5 pb-[60px]">
-        <img className="max-w-80 p-10" src={Model_Logo_md} alt="" />
-        <Card className="bg-card container mx-auto mb-5 border-0 text-white md:max-w-1/2">
+        <img className="max-w-80 p-10" src={Model_Logo_md} alt="Model_Logo_md" />
+        <Card className="bg-card container mx-auto mb-5 border-0 text-white md:max-w-[400px]">
           <CardContent className="flex flex-col text-center">
             <form onSubmit={handleSubmit(onSubmit)}>
               <Input
                 {...register('email')}
-                // onChange={(e) => setEmail(e.target.value)}
                 className="mb-5"
                 type="email"
                 placeholder="請輸入註冊信箱"
               />
               <Input
                 {...register('password')}
-                // onChange={(e) => setPassword(e.target.value)}
                 className="mb-5"
                 type="password"
                 placeholder="請輸入密碼"

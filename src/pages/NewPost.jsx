@@ -4,7 +4,7 @@ import { Input } from '@/components/ui/input'
 import { IoImagesSharp } from 'react-icons/io5'
 import { Button } from '@/components/ui/button'
 import { useForm } from 'react-hook-form'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination } from 'swiper/modules'
 import 'swiper/css/bundle'
@@ -12,7 +12,7 @@ import supabase from '@/supabaseService/supabaseClient'
 
 import { v4 as uuidv4 } from 'uuid'
 import { useGetUserId } from '@/hooks/useAuth'
-import { useNavigate } from 'react-router'
+import { Navigate, useNavigate } from 'react-router'
 
 import {
   AlertDialog,
@@ -27,6 +27,17 @@ import {
 } from '@/components/ui/alert-dialog'
 
 function NewPost() {
+  const [isAuth, setIsAuth] = useState(false)
+  useEffect(() => {
+    supabase.auth.onAuthStateChange((event) => {
+      if (event === 'SIGNED_IN') {
+        setIsAuth(true)
+      } else {
+        setIsAuth(false)
+      }
+    })
+  }, [])
+
   const { register, handleSubmit } = useForm()
   // 取得 user id
   const { userId } = useGetUserId()
@@ -118,84 +129,91 @@ function NewPost() {
 
   return (
     <>
-      <div className="mx-auto flex w-[400px] max-w-[400px] flex-col items-center justify-center p-5 text-white">
-        <h3 className="text-2xl font-bold">新增貼文</h3>
-        <form onSubmit={handleSubmit(onSubmit)} className="w-full">
-          <Textarea
-            {...register('text')}
-            className="my-5 h-50 w-full p-5 caret-white"
-            placeholder="輸入貼文內容"
-            required
-          />
-          {/* 預覽上傳圖片 */}
-          <div className={`${images.length > 0 ? 'inline' : 'hidden'} text-center`}>
-            <p className="text-xl font-bold">預覽圖片</p>
-            <Swiper
-              modules={[Navigation, Pagination]}
-              slidesPerView={1}
-              pagination={{ clickable: true }}
-              centeredSlides={true}
-              className="bg-background mb-3 rounded-sm"
-            >
-              {images.map((img) => {
-                return (
-                  <SwiperSlide>
-                    <div className="flex h-80 items-center justify-center">
-                      <img src={img} alt="Preview" className="h-full w-full object-contain" />
-                    </div>
-                  </SwiperSlide>
-                )
-              })}
-            </Swiper>
-          </div>
-
-          <Button type="button" className="mb-5 h-[80px] w-full border p-0">
-            <Input
-              onChange={handleImageChange}
-              type="file"
-              accept="image/*"
-              id="uploadImg"
-              multiple
-              className="hidden"
+      {isAuth ? (
+        <div className="mx-auto flex w-[400px] max-w-[400px] flex-col items-center justify-center p-5 text-white">
+          <h3 className="text-2xl font-bold">新增貼文</h3>
+          <form onSubmit={handleSubmit(onSubmit)} className="w-full">
+            <Textarea
+              {...register('text')}
+              className="my-5 h-50 w-full p-5 caret-white"
+              placeholder="輸入貼文內容"
+              required
             />
-            <label
-              htmlFor="uploadImg"
-              className="flex h-full w-full flex-col items-center justify-center text-white"
-            >
-              <p className="font-bold">上傳圖片</p>
-              <IoImagesSharp className="text-white" style={{ width: '30px', height: '30px' }} />
-            </label>
-          </Button>
-          <div className="flex justify-center gap-3">
-            <AlertDialog>
-              <AlertDialogTrigger type="button" className="btn-basic rounded-md border px-3">
-                取消
-              </AlertDialogTrigger>
-              <AlertDialogContent>
-                <AlertDialogHeader>
-                  <AlertDialogTitle className="text-white">確定要取消這則貼文嗎?</AlertDialogTitle>
-                  <AlertDialogDescription className="text-white">
-                    取消後將會返回首頁，已輸入的內容將會消失！
-                  </AlertDialogDescription>
-                </AlertDialogHeader>
-                <AlertDialogFooter>
-                  <AlertDialogCancel className="btn-basic text-white">返回</AlertDialogCancel>
-                  <AlertDialogAction
-                    className="btn-danger-trigger border text-white"
-                    onClick={handleCancel}
-                  >
-                    確定取消
-                  </AlertDialogAction>
-                </AlertDialogFooter>
-              </AlertDialogContent>
-            </AlertDialog>
+            {/* 預覽上傳圖片 */}
+            <div className={`${images.length > 0 ? 'inline' : 'hidden'} text-center`}>
+              <p className="text-xl font-bold">預覽圖片</p>
+              <Swiper
+                modules={[Navigation, Pagination]}
+                slidesPerView={1}
+                pagination={{ clickable: true }}
+                centeredSlides={true}
+                className="bg-background mb-3 rounded-sm"
+              >
+                {images.map((img) => {
+                  return (
+                    <SwiperSlide>
+                      <div className="flex h-80 items-center justify-center">
+                        <img src={img} alt="Preview" className="h-full w-full object-contain" />
+                      </div>
+                    </SwiperSlide>
+                  )
+                })}
+              </Swiper>
+            </div>
 
-            <Button type="submit" className="btn-basic border">
-              立即發布
+            <Button type="button" className="mb-5 h-[80px] w-full border p-0">
+              <Input
+                onChange={handleImageChange}
+                type="file"
+                accept="image/*"
+                id="uploadImg"
+                multiple
+                className="hidden"
+              />
+              <label
+                htmlFor="uploadImg"
+                className="flex h-full w-full flex-col items-center justify-center text-white"
+              >
+                <p className="font-bold">上傳圖片</p>
+                <IoImagesSharp className="text-white" style={{ width: '30px', height: '30px' }} />
+              </label>
             </Button>
-          </div>
-        </form>
-      </div>
+            <div className="flex justify-center gap-3">
+              <AlertDialog>
+                <AlertDialogTrigger type="button" className="btn-basic rounded-md border px-3">
+                  取消
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle className="text-white">
+                      確定要取消這則貼文嗎?
+                    </AlertDialogTitle>
+                    <AlertDialogDescription className="text-white">
+                      取消後將會返回首頁，已輸入的內容將會消失！
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel className="btn-basic text-white">返回</AlertDialogCancel>
+                    <AlertDialogAction
+                      className="btn-danger-trigger border text-white"
+                      onClick={handleCancel}
+                    >
+                      確定取消
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
+
+              <Button type="submit" className="btn-basic border">
+                立即發布
+              </Button>
+            </div>
+          </form>
+        </div>
+      ) : (
+        <Navigate to="/login" />
+      )}
+
       <Navbar />
     </>
   )

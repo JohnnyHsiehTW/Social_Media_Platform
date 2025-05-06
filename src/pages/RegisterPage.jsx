@@ -24,8 +24,8 @@ function RegisterPage() {
   return (
     <>
       <div className="mx-auto flex h-full flex-col items-center justify-center p-5 pb-[60px]">
-        <img className="max-w-80 p-10" src={Model_Logo_md} alt="" />
-        <Card className="bg-card container mx-auto mb-5 border-0 text-white md:max-w-1/2">
+        <img className="max-w-80 p-10" src={Model_Logo_md} alt="Model_Logo_md" />
+        <Card className="bg-card container mx-auto mb-5 border-0 text-white md:max-w-[400px]">
           <CardContent className="flex flex-col text-center">
             <form onSubmit={handleSubmit(onSubmit)}>
               <Input
@@ -40,7 +40,6 @@ function RegisterPage() {
                 type="password"
                 placeholder="請輸入密碼"
               />
-              {/* <Input {...register('checkPassword')} className="mb-5" type="password" placeholder="再次輸入密碼" /> */}
               <Button className="mb-5 text-base" variant="outline">
                 註冊
               </Button>
