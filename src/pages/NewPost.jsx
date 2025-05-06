@@ -25,6 +25,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
+import { toast } from 'sonner'
 
 function NewPost() {
   const [isAuth, setIsAuth] = useState(true)
@@ -110,8 +111,13 @@ function NewPost() {
         .insert([{ user_id: userId, content: text, img_urls: img_urls }])
         .select()
       navigate('/')
+      toast.success('新增貼文成功')
     } catch (error) {
-      console.log(error)
+      if (error instanceof Error) {
+        toast.error('新增貼文失敗，請稍後再試')
+      } else {
+        toast.error('發生未知錯誤，請稍後再試')
+      }
     }
   }
 

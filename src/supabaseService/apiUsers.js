@@ -17,7 +17,7 @@ export async function apiGetUsers() {
 }
 
 // 取得特定使用者資料
-export async function apiGetUser({ userId }) {
+export async function apiGetUser(userId) {
   try {
     let { data: users, error } = await supabase.from('users').select('*').eq('id', userId)
     if (error) throw error

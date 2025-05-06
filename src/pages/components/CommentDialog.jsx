@@ -90,22 +90,20 @@ function CommentDialog({ postId }) {
           </ScrollArea> */}
         </div>
 
-        <AlertDialogFooter>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="relative w-full">
-              <Input
-                {...register('comment')}
-                type="text"
-                className="w-full pr-10 text-white"
-                placeholder="留下評論吧!!!"
-                required
-              ></Input>
-              <button className="absolute top-1/2 right-1 -translate-y-1/2 px-2" type="submit">
-                <IoMdSend className="text-xl text-white" />
-              </button>
-            </div>
-          </form>
-        </AlertDialogFooter>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="relative w-full">
+            <Input
+              {...register('comment')}
+              type="text"
+              className="w-full pr-10 text-white"
+              placeholder="留下評論吧!!!"
+              required
+            ></Input>
+            <button className="absolute top-1/2 right-1 -translate-y-1/2 px-2" type="submit">
+              <IoMdSend className="text-xl text-white" />
+            </button>
+          </div>
+        </form>
       </AlertDialogContent>
     </AlertDialog>
   )

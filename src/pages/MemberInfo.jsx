@@ -47,8 +47,7 @@ import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 function MemberInfo() {
   const [isAuth, setIsAuth] = useState(true)
   const [userData, setUserData] = useState({})
-  const [authUserData, setAuthUserData] = useState([])
-  const { userInfo, authUser, isLoading } = useMemberInfo()
+  const { userInfo, isLoading } = useMemberInfo()
 
   const [isEdit, setIsEdit] = useState(false)
 
@@ -57,8 +56,8 @@ function MemberInfo() {
       if (session) {
         setIsAuth(true) // 用戶已登入
         setUserData(userInfo)
-        setAuthUserData(authUser)
         reset({
+          email: userInfo?.email,
           username: userInfo?.username,
           name: userInfo?.name,
           phone: userInfo?.phone,
@@ -71,7 +70,7 @@ function MemberInfo() {
     return () => {
       data.subscription.unsubscribe()
     }
-  }, [userInfo, authUser])
+  }, [userInfo])
 
   // 登出
   const { apiLogoutHandler } = useLogout()
@@ -230,7 +229,7 @@ function MemberInfo() {
                     <CardContent className="space-y-2">
                       <div className="space-y-1">
                         <Label htmlFor="email">會員帳號</Label>
-                        <Input id="email" defaultValue={authUserData?.email} disabled />
+                        <Input id="email" {...register('email')} disabled />
                       </div>
                       <div className="space-y-1">
                         <Label htmlFor="username">會員暱稱</Label>

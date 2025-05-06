@@ -8,6 +8,8 @@ import {
 import supabase from '@/supabaseService/supabaseClient'
 import { useQuery } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router'
+import { toast } from 'sonner'
 
 // 取得貼文
 export function usePostsData() {
@@ -58,6 +60,7 @@ export function useUserLikedPosts(userId) {
   const [likedPostIds, setLikedPostIds] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (!userId) return
@@ -86,8 +89,17 @@ export function useUserLikedPosts(userId) {
         await apiDeleteLike(postId, userId)
         setLikedPostIds((ids) => ids.filter((id) => id !== postId))
       }
-    } catch (err) {
-      console.error('按讚失敗', err)
+    } catch (error) {
+      if (error instanceof Error) {
+        toast.error('若要使用此功能，請先登入', {
+          action: {
+            label: '登入',
+            onClick: () => navigate('/login'),
+          },
+        })
+      } else {
+        toast.error('發生未知錯誤，請稍後再試')
+      }
     }
   }
 

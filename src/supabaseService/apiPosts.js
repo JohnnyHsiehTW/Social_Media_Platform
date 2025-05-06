@@ -77,8 +77,6 @@ export async function apiAddComment() {
   }
 }
 
-// 取得按讚狀態
-
 // 新增按讚
 export async function apiAddLike(postId, userId) {
   await supabase
