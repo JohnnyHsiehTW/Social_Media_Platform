@@ -6,7 +6,6 @@ import {
   apiGetPosts,
 } from '@/supabaseService/apiPosts'
 import supabase from '@/supabaseService/supabaseClient'
-// import supabase from '@/supabaseService/supabaseClient'
 import { useQuery } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
 
@@ -55,13 +54,6 @@ export function useCommentsData(postId) {
 }
 
 // 貼文按讚
-// 1.建立 posts-like 資料表，儲存每則貼文的按讚狀態
-// 2.顯示貼文時取得 post likes 原始數量
-// 3.if toggled state = ture
-// 4.apiUpdateLikes 更新為 true
-// 5.if toggled state = false
-// 6.apiUpdateLikes 更新為 false
-// 7.posts likes 欄位計算 posts-like 符合 post id 的資料筆數
 export function useUserLikedPosts(userId) {
   const [likedPostIds, setLikedPostIds] = useState([])
   const [loading, setLoading] = useState(true)
@@ -72,9 +64,9 @@ export function useUserLikedPosts(userId) {
 
     setLoading(true)
     supabase
-      .from('post_likes') // 假設你的 table 名稱
-      .select('post_id') // 只取 post_id 欄位
-      .eq('user_id', userId) // 過濾這個使用者
+      .from('post_likes')
+      .select('post_id')
+      .eq('user_id', userId)
       .then(({ data, error }) => {
         if (error) {
           setError(error.message)

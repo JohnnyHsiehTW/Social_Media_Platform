@@ -1,6 +1,5 @@
 import {
   AlertDialog,
-  AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
@@ -29,7 +28,7 @@ function PostDeleteDialog({ postId, handleDelete }) {
         <AlertDialogFooter className="text-white">
           <AlertDialogCancel className="">取消</AlertDialogCancel>
           <Button
-            className="btn-danger-trigger bg-danger mb-2"
+            className="btn-danger-trigger bg-danger mb-2 border"
             type="button"
             onClick={() => handleDelete(postId)}
           >

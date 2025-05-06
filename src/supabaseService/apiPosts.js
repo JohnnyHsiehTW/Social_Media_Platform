@@ -1,3 +1,4 @@
+import { toast } from 'sonner'
 import supabase from './supabaseClient'
 
 // 取得貼文資料
@@ -12,7 +13,11 @@ export async function apiGetPosts() {
     if (error) throw error
     return posts
   } catch (error) {
-    console.log('讀取貼文資料錯誤', error)
+    if (error instanceof Error) {
+      toast.error('取得貼文失敗，請稍後再試')
+    } else {
+      toast.error('發生未知錯誤，請稍後再試')
+    }
   }
 }
 
@@ -29,7 +34,11 @@ export async function apiGetMyPosts(userId) {
     if (error) throw error
     return posts
   } catch (error) {
-    console.log('讀取貼文資料錯誤', error)
+    if (error instanceof Error) {
+      toast.error('取得貼文失敗，請稍後再試')
+    } else {
+      toast.error('發生未知錯誤，請稍後再試')
+    }
   }
 }
 
@@ -44,19 +53,27 @@ export async function apiGetComments(postId) {
     if (error) throw error
     return posts
   } catch (error) {
-    console.log('讀取留言資料錯誤', error)
+    if (error instanceof Error) {
+      toast.error('取得留言失敗，請稍後再試')
+    } else {
+      toast.error('發生未知錯誤，請稍後再試')
+    }
   }
 }
 
 // 新增留言
-export async function apiAddComment(data) {
+export async function apiAddComment() {
   try {
     await supabase
       .from('comments')
       .insert([{ content: 'text', post_id: 'postId', user_id: 'userId' }])
       .select()
   } catch (error) {
-    console.log(error)
+    if (error instanceof Error) {
+      toast.error('新增留言失敗，請稍後再試')
+    } else {
+      toast.error('發生未知錯誤，請稍後再試')
+    }
   }
 }
 
@@ -64,7 +81,7 @@ export async function apiAddComment(data) {
 
 // 新增按讚
 export async function apiAddLike(postId, userId) {
-  const { data, error } = await supabase
+  await supabase
     .from('post_likes')
     .insert([{ post_id: postId, user_id: userId }])
     .select()
@@ -73,7 +90,7 @@ export async function apiAddLike(postId, userId) {
 
 // 取消按讚
 export async function apiDeleteLike(postId, userId) {
-  const { data, error } = await supabase
+  await supabase
     .from('post_likes')
     .delete()
     .eq('post_id', postId)

@@ -202,14 +202,14 @@
 
 @media (min-width: 768px) {
   .btn-danger-trigger:hover {
-    background-color: #912e2e;
+    background-color: #ca2a2a;
     color: white;
   }
 }
 
 @media (max-width: 767px) {
   .btn-danger-trigger:active {
-    background-color: #912e2e;
+    background-color: #ca2a2a;
   }
 }
 

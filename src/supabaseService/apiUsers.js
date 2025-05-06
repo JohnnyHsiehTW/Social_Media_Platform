@@ -1,3 +1,4 @@
+import { toast } from 'sonner'
 import supabase from './supabaseClient'
 
 // 取得特定使用者資料
@@ -7,7 +8,11 @@ export async function apiGetUsers() {
     if (error) throw error
     return users
   } catch (error) {
-    console.log('讀取使用者資料錯誤')
+    if (error instanceof Error) {
+      toast.error(`發生錯誤: ${error.message}`)
+    } else {
+      toast.error('發生未知錯誤，請稍後再試！')
+    }
   }
 }
 
@@ -18,7 +23,11 @@ export async function apiGetUser({ userId }) {
     if (error) throw error
     return users
   } catch (error) {
-    console.log('讀取使用者資料錯誤')
+    if (error instanceof Error) {
+      toast.error(`發生錯誤: ${error.message}`)
+    } else {
+      toast.error('發生未知錯誤，請稍後再試！')
+    }
   }
 }
 
@@ -38,9 +47,15 @@ export async function apiUpdateUser(updateData, userId) {
       .eq('id', userId)
       .select()
     if (error) throw error
+    toast.success('使用者資料已成功更新')
     return data
   } catch (error) {
-    console.log(error)
+    toast.error('使用者資料更新失敗，請稍後再試')
+    if (error instanceof Error) {
+      toast.error('使用者資料更新失敗，請稍後再試')
+    } else {
+      toast.error('發生未知錯誤，請稍後再試')
+    }
   }
 }
 
@@ -57,8 +72,13 @@ export async function apiUpdateUserImage(publicUrl, userId) {
       .eq('id', userId)
       .select()
     if (error) throw error
+    toast.success('使用者頭貼已成功更新')
     return data
   } catch (error) {
-    alert(error)
+    if (error instanceof Error) {
+      toast.error('使用者頭貼更新失敗，請稍後再試')
+    } else {
+      toast.error('發生未知錯誤，請稍後再試')
+    }
   }
 }

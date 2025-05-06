@@ -3,48 +3,54 @@ import { useNavigate } from 'react-router'
 import { useEffect, useState } from 'react'
 import supabase from '@/supabaseService/supabaseClient'
 import { getUserId } from '@/supabaseService/apiAuth'
+import { toast } from 'sonner'
 
 // 登入
 export function useLogin() {
-  const [error, setError] = useState('')
   const navigate = useNavigate()
 
   const apiLoginHandler = async ({ email, password }) => {
     try {
       const userData = await apiLogin({ email, password })
       if (userData) {
+        toast.success('登入成功')
         navigate('/memberInfo')
       }
     } catch (error) {
-      setError(error)
+      if (error instanceof Error) {
+        toast.error('登入失敗，請稍後再試')
+      } else {
+        toast.error('發生未知錯誤，請稍後再試')
+      }
     }
   }
   return {
     apiLoginHandler,
-    error,
   }
 }
 
 // 登出
 export function useLogout() {
-  const [error, setError] = useState('')
   const apiLogoutHandler = async () => {
     try {
       let { error } = await supabase.auth.signOut()
       if (error) throw error
+      toast.success('登出成功')
     } catch (error) {
-      setError('登出失敗')
+      if (error instanceof Error) {
+        toast.error('登出失敗，請稍後再試')
+      } else {
+        toast.error('發生未知錯誤，請稍後再試')
+      }
     }
   }
   return {
     apiLogoutHandler,
-    error,
   }
 }
 
 // 註冊
 export function useRegister() {
-  const [error, setError] = useState('')
   const navigate = useNavigate()
   const apiSignup = async ({ email, password, userData }) => {
     try {
@@ -71,14 +77,17 @@ export function useRegister() {
         ])
         .select()
       if (insertError) throw insertError
+      toast.success('已成功註冊，請至登入頁面重新登入')
     } catch (error) {
-      alert(error.message)
-      setError(error)
+      if (error instanceof Error) {
+        toast.error('註冊失敗，請稍後再試')
+      } else {
+        toast.error('發生未知錯誤，請稍後再試')
+      }
     }
   }
   return {
     apiSignup,
-    error,
   }
 }
 

@@ -27,10 +27,10 @@ import {
 } from '@/components/ui/alert-dialog'
 
 function NewPost() {
-  const [isAuth, setIsAuth] = useState(false)
+  const [isAuth, setIsAuth] = useState(true)
   useEffect(() => {
-    supabase.auth.onAuthStateChange((event) => {
-      if (event === 'SIGNED_IN') {
+    supabase.auth.onAuthStateChange((event, session) => {
+      if (session !== null) {
         setIsAuth(true)
       } else {
         setIsAuth(false)

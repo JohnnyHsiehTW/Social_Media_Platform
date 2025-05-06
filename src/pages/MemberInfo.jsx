@@ -139,8 +139,6 @@ function MemberInfo() {
   const onSubmit = async (data) => {
     try {
       await apiUpdateUser(data, userId)
-      // 加入更新成功提示
-      alert('更新成功')
       setIsEdit(false)
     } catch (error) {
       console.log(error)
