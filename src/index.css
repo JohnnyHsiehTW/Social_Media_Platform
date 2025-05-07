@@ -177,13 +177,13 @@
 
 @media (min-width: 768px) {
   .btn:hover {
-    background-color: #7a7163; /* 當桌面版 hover 時背景顏色變化 */
+    background-color: #7a7163;
   }
 }
 
 @media (max-width: 767px) {
   .btn:active {
-    background-color: #7a7163; /* 當手機版點擊時背景顏色變化 */
+    background-color: #7a7163;
   }
 }
 

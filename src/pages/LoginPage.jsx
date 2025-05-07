@@ -29,12 +29,14 @@ function LoginPage() {
                 className="mb-5"
                 type="email"
                 placeholder="請輸入註冊信箱"
+                autoComplete="email"
               />
               <Input
                 {...register('password')}
                 className="mb-5"
                 type="password"
                 placeholder="請輸入密碼"
+                autoComplete="current-password"
               />
               <Button type="submit" className="mb-5 text-base" variant="outline">
                 登入

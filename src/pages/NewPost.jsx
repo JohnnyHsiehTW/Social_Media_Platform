@@ -28,7 +28,7 @@ import {
 import { toast } from 'sonner'
 
 function NewPost() {
-  const [isAuth, setIsAuth] = useState(true)
+  const [isAuth, setIsAuth] = useState(false)
   useEffect(() => {
     supabase.auth.onAuthStateChange((event, session) => {
       if (session !== null) {
