@@ -3,7 +3,6 @@ import {
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
-  AlertDialogFooter,
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
@@ -19,6 +18,7 @@ import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 import supabase from '@/supabaseService/supabaseClient'
 import { useGetUserId } from '@/hooks/useAuth'
 import { useCommentsData } from '@/hooks/usePosts'
+import { toast } from 'sonner'
 
 function CommentDialog({ postId }) {
   const { userId } = useGetUserId()
@@ -27,7 +27,7 @@ function CommentDialog({ postId }) {
 
   const [open, setOpen] = useState(false)
 
-  // 新增貼文
+  // 新增留言
   const { comments } = useCommentsData(postId)
   const [commentsData, setCommentsData] = useState([])
 
@@ -37,7 +37,7 @@ function CommentDialog({ postId }) {
     }
   }, [comments, commentsData])
 
-  async function apiAddPost(newComment) {
+  async function apiAddComment(newComment) {
     try {
       const { data: inserted } = await supabase
         .from('comments')
@@ -47,7 +47,11 @@ function CommentDialog({ postId }) {
         setCommentsData((prev) => [...inserted, ...prev])
       }
     } catch (error) {
-      console.log(error)
+      if (error instanceof Error) {
+        toast.error('留言失敗，請稍後再試')
+      } else {
+        toast.error('發生不明錯誤，請稍後再試')
+      }
     }
   }
 
@@ -57,14 +61,14 @@ function CommentDialog({ postId }) {
       post_id: postId,
       user_id: userId,
     }
-    apiAddPost(newComment)
+    apiAddComment(newComment)
     reset()
   }
 
   return (
     <AlertDialog open={open} onOpenChange={setOpen}>
       {/* Dialog 開關 */}
-      <AlertDialogTrigger>查看 {comments.length} 則留言</AlertDialogTrigger>
+      <AlertDialogTrigger>查看 {commentsData.length} 則留言</AlertDialogTrigger>
 
       <AlertDialogContent className="flex h-[60vh] w-full flex-col">
         {/* 標題 */}

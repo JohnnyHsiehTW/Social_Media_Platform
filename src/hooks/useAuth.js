@@ -14,7 +14,7 @@ export function useLogin() {
       const userData = await apiLogin({ email, password })
       if (userData) {
         toast.success('登入成功')
-        navigate('/memberInfo')
+        navigate('/memberInfo', { replace: true })
       }
     } catch (error) {
       if (error instanceof Error) {

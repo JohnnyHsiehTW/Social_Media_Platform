@@ -1,6 +1,5 @@
 import { Virtuoso } from 'react-virtuoso'
 import { useEffect, useRef, useState } from 'react'
-import { Button } from '@/components/ui/button'
 
 const ITEM_HEIGHT = 28
 const CONTAINER_HEIGHT = 350
