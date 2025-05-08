@@ -160,7 +160,7 @@ function MemberInfo() {
     <>
       <>
         <Header />
-        <div className="mx-auto max-w-[680px]">
+        <div className="mx-auto max-w-[680px] pb-15">
           <Tabs defaultValue="account" className="mx-auto w-full p-5">
             <div className="bg-background mx-auto w-full">
               <h1 className="mb-3 pt-13 text-center text-3xl font-bold text-white">會員中心</h1>
