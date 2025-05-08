@@ -28,27 +28,6 @@ import {
 import { toast } from 'sonner'
 
 function NewPost() {
-  // const [isAuth, setIsAuth] = useState(null)
-  // useEffect(() => {
-  //   const { data: session } = supabase.auth.getSession()
-  //   if (session) {
-  //     setIsAuth(true)
-  //   } else {
-  //     setIsAuth(false)
-  //   }
-
-  //   const authListener = supabase.auth.onAuthStateChange((event, session) => {
-  //     if (session !== null) {
-  //       setIsAuth(true)
-  //     } else {
-  //       setIsAuth(false)
-  //     }
-  //   })
-  //   return () => {
-  //     authListener
-  //   }
-  // }, [])
-
   const { register, handleSubmit } = useForm()
   // 取得 user id
   const { userId } = useGetUserId()
@@ -144,13 +123,13 @@ function NewPost() {
   }
 
   return (
-    <>
-      <div className="mx-auto flex w-[400px] max-w-[400px] flex-col items-center justify-center p-5 text-white">
+    <div className="flex h-screen flex-col">
+      <main className="mx-auto flex w-full flex-col items-center justify-center p-5 pb-15 text-white md:max-w-[680px]">
         <h3 className="text-2xl font-bold">新增貼文</h3>
-        <form onSubmit={handleSubmit(onSubmit)} className="w-full">
+        <form onSubmit={handleSubmit(onSubmit)} className="h-full w-full">
           <Textarea
             {...register('text')}
-            className="my-5 h-50 w-full p-5 caret-white"
+            className="my-5 w-full p-5 caret-white"
             placeholder="輸入貼文內容"
             required
           />
@@ -162,13 +141,17 @@ function NewPost() {
               slidesPerView={1}
               pagination={{ clickable: true }}
               centeredSlides={true}
-              className="bg-background mb-3 rounded-sm"
+              className="bg-background mb-3 h-[50vh] rounded-sm"
             >
               {images.map((img) => {
                 return (
                   <SwiperSlide>
-                    <div className="flex h-80 items-center justify-center">
-                      <img src={img} alt="Preview" className="h-full w-full object-contain" />
+                    <div className="flex h-full items-center justify-center">
+                      <img
+                        src={img}
+                        alt="Preview"
+                        className="h-full max-h-[50vh] w-full object-contain md:max-h-[50vh]"
+                      />
                     </div>
                   </SwiperSlide>
                 )
@@ -193,7 +176,7 @@ function NewPost() {
               <IoImagesSharp className="text-white" style={{ width: '30px', height: '30px' }} />
             </label>
           </Button>
-          <div className="flex justify-center gap-3">
+          <div className="flex justify-center gap-3 pb-5">
             <AlertDialog>
               <AlertDialogTrigger type="button" className="btn-basic rounded-md border px-3">
                 取消
@@ -216,15 +199,14 @@ function NewPost() {
                 </AlertDialogFooter>
               </AlertDialogContent>
             </AlertDialog>
-
             <Button type="submit" className="btn-basic border">
               立即發布
             </Button>
           </div>
         </form>
-      </div>
+      </main>
       <Navbar />
-    </>
+    </div>
   )
 }
 

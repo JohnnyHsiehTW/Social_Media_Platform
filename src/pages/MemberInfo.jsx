@@ -302,7 +302,7 @@ function MemberInfo() {
                   <AlertDialog>
                     <AlertDialogTrigger
                       type="button"
-                      className="btn-danger-trigger bg-danger text-md mt-3 rounded-sm px-3 py-1 text-white"
+                      className="btn-danger-trigger text-md mt-3 rounded-sm px-3 py-1 text-white"
                     >
                       登出帳號
                     </AlertDialogTrigger>
@@ -321,7 +321,7 @@ function MemberInfo() {
                         </AlertDialogCancel>
                         <AlertDialogAction
                           onClick={logoutHandler}
-                          className="btn-logout border border-white"
+                          className="btn-danger-trigger border border-white"
                         >
                           登出
                         </AlertDialogAction>

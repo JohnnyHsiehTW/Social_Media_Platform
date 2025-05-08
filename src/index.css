@@ -200,6 +200,10 @@
   }
 }
 
+.btn-danger-trigger {
+  background-color: #682e2e;
+}
+
 @media (min-width: 768px) {
   .btn-danger-trigger:hover {
     background-color: #ca2a2a;
