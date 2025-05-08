@@ -21,6 +21,7 @@ import CommentDialog from './components/CommentDialog'
 import UserImage from './components/UserImage'
 import PostDeleteDialog from './components/PostDeleteDialog'
 import { NavLink } from 'react-router'
+import { toast } from 'sonner'
 
 function MyPosts() {
   // 取得 user id
@@ -45,8 +46,13 @@ function MyPosts() {
     try {
       await supabase.from('posts').delete().eq('id', postId)
       await queryClient.invalidateQueries({ queryKey: ['posts', userId] })
+      toast.success('刪除貼文成功')
     } catch (error) {
-      console.log(error)
+      if (error instanceof Error) {
+        toast.error('刪除貼文失敗，請稍後再試')
+      } else {
+        toast.error('發生不明錯誤，請稍後再試')
+      }
     }
   }
 
@@ -55,7 +61,7 @@ function MyPosts() {
       <Header />
       <div className="mx-auto h-full p-5 pt-17 pb-[60px]">
         <h3 className="mb-2 text-center text-xl font-bold text-white">我的貼文</h3>
-        {postsData.length > 0 ? (
+        {myPosts.length > 0 ? (
           postsData.map((post) => {
             const isLiked = likedPostIds.includes(post.id)
             const postContent = post.content.replace(/\\n/g, '\n')
