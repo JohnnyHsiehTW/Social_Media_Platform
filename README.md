@@ -1,12 +1,17 @@
-# React + Vite
+# 模法師 - 社群交流平台
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[網站連結](https://johnnyhsiehtw.github.io/Social_Media_Platform/)
 
-Currently, two official plugins are available:
+「模法師」是一個專為模型玩家開創的社群交流平台，玩家可以在此盡情發表模型相關的內容，未來將會結合購物商城，交流的同時享受購買模型的樂趣！
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 使用技術
+### 前端
+- 環境：Vite + React
+- 路由管理：React Router
+- 狀態管理：React Redux Toolkit
+- UI資源庫：shadcn
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 後端
+- Supabase
+
