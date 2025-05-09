@@ -60,7 +60,7 @@ function UserComment({ comments }) {
           <button
             type="button"
             onClick={handleLoadMore}
-            className={comments.length < defaultVisibleCount ? 'hidden' : 'inline'}
+            className={`${comments.length < defaultVisibleCount ? 'hidden' : 'inline'}`}
           >
             顯示更多留言
           </button>
