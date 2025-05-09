@@ -19,10 +19,10 @@ import { AiFillEyeInvisible } from 'react-icons/ai'
 const passwordSchema = z
   .string()
   .trim()
-  .regex(/[a-z]/, '需包含至少一個小寫字母')
-  .regex(/[0-9]/, '需包含至少一個數字')
   .min(6, { message: '密碼長度不得小於6個字元' })
   .max(20, { message: '密碼長度最多20個字元' })
+  .regex(/[a-z]/, '需包含至少一個小寫字母')
+  .regex(/[0-9]/, '需包含至少一個數字')
 const userSchema = z
   .object({
     email: z.string().trim().email({ message: '請輸入正確的信箱格式' }),
@@ -141,9 +141,14 @@ function RegisterPage() {
                 註冊
               </Button>
             </form>
-            <Link to="/login" className="text-sm text-neutral-300">
-              已經有帳號了嗎? 前往登入
-            </Link>
+            <div>
+              <Link
+                to="/login"
+                className="rounded p-0.5 text-sm text-neutral-300 hover:bg-[#7a7163]"
+              >
+                已經有帳號了嗎? 前往登入
+              </Link>
+            </div>
           </CardContent>
         </Card>
       </div>

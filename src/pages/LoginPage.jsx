@@ -108,9 +108,14 @@ function LoginPage() {
                 登入
               </Button>
             </form>
-            <Link to="/register" className="text-sm text-neutral-300">
-              還沒有帳號嗎? 立即註冊
-            </Link>
+            <div>
+              <Link
+                to="/register"
+                className="rounded p-0.5 text-sm text-neutral-300 hover:bg-[#7a7163]"
+              >
+                還沒有帳號嗎? 立即註冊
+              </Link>
+            </div>
           </CardContent>
         </Card>
       </div>

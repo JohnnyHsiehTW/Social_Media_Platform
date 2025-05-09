@@ -39,12 +39,15 @@ function CommentDialog({ postId }) {
 
   async function apiAddComment(newComment) {
     try {
-      const { data: inserted } = await supabase
+      const { data: inserted, error } = await supabase
         .from('comments')
         .insert([newComment])
         .select('*, users(*)')
       if (inserted && inserted.length > 0) {
         setCommentsData((prev) => [...inserted, ...prev])
+      }
+      if (error) {
+        toast.error('留言失敗，請確認是否已登入')
       }
     } catch (error) {
       if (error instanceof Error) {
@@ -89,11 +92,7 @@ function CommentDialog({ postId }) {
 
         {/* 滾動區 */}
         <div className="min-h-0 flex-1 overflow-hidden">
-          {/* <ScrollArea className="h-full">
-            <ScrollAreaViewport className="h-full"> */}
           <UserComment comments={commentsData} />
-          {/* </ScrollAreaViewport>
-          </ScrollArea> */}
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)}>
