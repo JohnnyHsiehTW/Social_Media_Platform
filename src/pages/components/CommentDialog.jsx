@@ -68,7 +68,9 @@ function CommentDialog({ postId }) {
   return (
     <AlertDialog open={open} onOpenChange={setOpen}>
       {/* Dialog 開關 */}
-      <AlertDialogTrigger>查看 {commentsData.length} 則留言</AlertDialogTrigger>
+      <AlertDialogTrigger className="rounded px-1 hover:bg-[#7a7163]">
+        查看 {commentsData.length} 則留言
+      </AlertDialogTrigger>
 
       <AlertDialogContent className="flex h-[60vh] w-full flex-col">
         {/* 標題 */}
