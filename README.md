@@ -14,10 +14,16 @@
 
 - 路由管理：React Router  
 Router 採用 object 型式撰寫，相較於 Component 型式，視覺上更為一目瞭然，對於維護及開發更加友善。
+
+- UI資源庫：shadcn  
+shadcn 提供預設樣式，可快速建置各項元件，並加以客製化以符合使用需求。
+
+- 表單套件：React Hook Form  
+完整且豐富的表單套件，
   
-- UI資源庫：shadcn
-- 表單套件：React Hook Form
-- 表單驗證：zod
+- 表單驗證：zod  
+與 React Hook Form 結合使用，針對輸入內容進行驗證，有效引導使用者輸入符合格式的內容。
+
 - 輪播套件：React Swiper
 - 虛擬滾動：Virtuoso
 
