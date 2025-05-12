@@ -46,6 +46,7 @@ import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { toast } from 'sonner'
 
 const userSchema = z.object({
   username: z
@@ -130,7 +131,7 @@ function MemberInfo() {
       await apiUpdateUserImage(publicUrl, userId)
       return publicUrl
     } catch (error) {
-      console.log(error.message)
+      toast.error(error.message)
     }
   }
   const handleUpdateImage = async (e) => {
@@ -168,7 +169,7 @@ function MemberInfo() {
       await apiUpdateUser(data, userId)
       setIsEdit(false)
     } catch (error) {
-      console.log(error)
+      toast.error(error.message)
     }
   }
 

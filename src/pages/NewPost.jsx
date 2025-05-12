@@ -12,7 +12,7 @@ import supabase from '@/supabaseService/supabaseClient'
 
 import { v4 as uuidv4 } from 'uuid'
 import { useGetUserId } from '@/hooks/useAuth'
-import { Navigate, useNavigate } from 'react-router'
+import { useNavigate } from 'react-router'
 
 import {
   AlertDialog,
@@ -61,7 +61,6 @@ function NewPost() {
   // 取得圖片url
   const getImageUrls = (res) => {
     const { data } = supabase.storage.from('posts-img').getPublicUrl(res?.path)
-    console.log('getImageUrls', data)
     return data //publicUrl
   }
 
@@ -78,16 +77,15 @@ function NewPost() {
       const urls = []
       for (const { data, error } of results) {
         if (error) {
-          console.log('Error uploading file:', error)
+          toast.error('圖片上傳失敗，請稍後再試')
         } else {
-          console.log('File uploaded successfully:', data)
           const imgPath = getImageUrls(data)
           urls.push({ url: imgPath?.publicUrl })
         }
       }
       return urls
     } catch (error) {
-      console.log(error)
+      toast.error(error.message)
     }
   }
 
@@ -119,7 +117,6 @@ function NewPost() {
   // 取消按鈕
   const handleCancel = () => {
     navigate('/')
-    console.log('cancel new post')
   }
 
   return (

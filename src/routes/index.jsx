@@ -21,8 +21,8 @@ const router = createHashRouter([
       { path: 'register', element: <RegisterPage /> },
       { path: 'market', element: <Market /> },
       {
+        // 保護路由
         element: <ProtectedRoutes />,
-        // 要被保護的路由
         children: [
           { path: 'memberInfo', element: <MemberInfo /> },
           { path: 'my-posts', element: <MyPosts /> },

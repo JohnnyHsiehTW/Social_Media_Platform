@@ -61,8 +61,6 @@ export async function apiUpdateUser(updateData, userId) {
 
 // 更新使用者頭貼
 export async function apiUpdateUserImage(publicUrl, userId) {
-  console.log('apiUpdateUserImage', publicUrl)
-
   try {
     const { data, error } = await supabase
       .from('users')
