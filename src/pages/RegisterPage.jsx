@@ -62,6 +62,10 @@ function RegisterPage() {
   const handleShowPassword = () => {
     setShowPassword(!showPassword)
   }
+  const [showPasswordConfirm, setShowPasswordConfirm] = useState(false)
+  const handleShowPasswordConfirm = () => {
+    setShowPasswordConfirm(!showPasswordConfirm)
+  }
 
   return (
     <>
@@ -83,7 +87,7 @@ function RegisterPage() {
                     id="email"
                     type="email"
                     placeholder="請輸入註冊信箱"
-                    className="mb-1 bg-white"
+                    className="mb-1 bg-white text-black"
                     autoComplete="email"
                   />
                 </div>
@@ -100,7 +104,7 @@ function RegisterPage() {
                     <Input
                       {...register('password')}
                       id="password"
-                      className="mb-1 bg-white"
+                      className="mb-1 bg-white text-black"
                       type={showPassword ? 'text' : 'password'}
                       placeholder="請輸入密碼"
                       autoComplete="new-password"
@@ -127,14 +131,27 @@ function RegisterPage() {
                       </p>
                     )}
                   </Label>
-                  <Input
-                    {...register('passwordConfirm')}
-                    id="password-confirm"
-                    className="mb-1 bg-white"
-                    type="password"
-                    placeholder="再次輸入密碼"
-                    autoComplete="new-password"
-                  />
+                  <div className="relative">
+                    <Input
+                      {...register('passwordConfirm')}
+                      id="password-confirm"
+                      className="mb-1 bg-white text-black"
+                      type={showPasswordConfirm ? 'text' : 'password'}
+                      placeholder="再次輸入密碼"
+                      autoComplete="new-password"
+                    />
+                    <button
+                      type="button"
+                      onClick={handleShowPasswordConfirm}
+                      className="absolute top-1/2 right-2 -translate-y-1/2"
+                    >
+                      {showPasswordConfirm ? (
+                        <AiFillEyeInvisible className="text-background text-xl" />
+                      ) : (
+                        <AiFillEye className="text-background text-xl" />
+                      )}
+                    </button>
+                  </div>
                 </div>
               </div>
               <Button className="mb-5 text-base" variant="outline">
