@@ -24,17 +24,17 @@
 ### 🔎 功能特性
 <div align='start'>
   
-  <p>帳號註冊／登入／編輯個人檔案／登出</p>
+  <p>帳號註冊／登入</p>
   <img style='width:300px' src='https://cmncvclhjzmwzdvowmih.supabase.co/storage/v1/object/sign/project-screenshots/Register.gif?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwcm9qZWN0LXNjcmVlbnNob3RzL1JlZ2lzdGVyLmdpZiIsImlhdCI6MTc0NzA2MzM3MSwiZXhwIjoxNzc4NTk5MzcxfQ.JEc-7NhULSbEZ_S71QAWHqde4Kkh1A2xh3g1KJK--HU'/> <img style='width:300px' src='https://cmncvclhjzmwzdvowmih.supabase.co/storage/v1/object/sign/project-screenshots/Login.gif?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwcm9qZWN0LXNjcmVlbnNob3RzL0xvZ2luLmdpZiIsImlhdCI6MTc0NzA2MzcwMCwiZXhwIjoxNzc4NTk5NzAwfQ.Qg9KgxMagSvwAN4nrB_0gEFIZDts_nAq9nkz8DVD-NE'/>
 <br/><br/>
 <hr/>
 
-  <p>編輯個人檔案 & 登出</p>
+  <p>編輯個人檔案／登出</p>
   <img style='width:300px' src='https://cmncvclhjzmwzdvowmih.supabase.co/storage/v1/object/sign/project-screenshots/Edit_MemberInfo.gif?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwcm9qZWN0LXNjcmVlbnNob3RzL0VkaXRfTWVtYmVySW5mby5naWYiLCJpYXQiOjE3NDcwNjM3MjEsImV4cCI6MTc3ODU5OTcyMX0.OAczivAZVheS-9VWVyCX4GU2MVqCI_YqMhXfsTTzACk'/>
   <br/><br/>
   <hr/>
 
-  <p>貼文發布／圖片上傳及預覽（Supabase Storage)</p>
+  <p>貼文發布／圖片上傳及預覽</p>
   <img style='width:300px' src='https://cmncvclhjzmwzdvowmih.supabase.co/storage/v1/object/sign/project-screenshots/Posting.gif?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwcm9qZWN0LXNjcmVlbnNob3RzL1Bvc3RpbmcuZ2lmIiwiaWF0IjoxNzQ3MDY1ODQ0LCJleHAiOjE3Nzg2MDE4NDR9.YyplxX48dJ-GqN22rPF2oh5_4Wl7C-jxARo49rAL-E0'/>
   <br/><br/>
   <hr/>
@@ -85,7 +85,7 @@ shadcn 提供預設樣式，可快速建置各項元件，並加以客製化以�
       </tr>
        <tr>
         <th align='start'>資料庫 (Database)</th>
-        <td align='start'>CRUD 操作、資料表建置(user、posts、comments...)</td>
+        <td align='start'>CRUD 操作、資料表建置(users、posts、comments...)</td>
       </tr>
       <tr>
         <th align='start'>儲存空間 (Storage)</th>
