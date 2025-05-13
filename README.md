@@ -74,7 +74,7 @@ shadcn 提供預設樣式，可快速建置各項元件，並加以客製化以�
 
 
 #### 後端
-- Supabase
+- Supabase  
 使用開源後端服務平台 supabase，快速建置認證、資料庫、儲存空間、即時功能。
 <div>
   <table>
