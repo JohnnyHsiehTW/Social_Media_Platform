@@ -37,7 +37,7 @@ function Header() {
 
   return (
     <div
-      className={`fixed z-50 flex h-13 w-full items-center bg-[#313131]`}
+      className={`fixed z-50 flex h-13 w-full items-center bg-[#434343]`}
       style={{
         transform: `translateY(${isVisible ? 0 : -100}px)`, // 滾動到 100px 後隱藏
         opacity: isVisible ? 1 : 0, // 控制顯示隱藏的透明度

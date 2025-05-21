@@ -7,14 +7,14 @@ import { MdAddToPhotos } from 'react-icons/md'
 
 function Navbar() {
   return (
-    <div className="fixed bottom-0 z-20 flex w-full justify-center bg-[#313131] p-3 text-white">
+    <div className="fixed bottom-0 z-20 flex w-full justify-center bg-[#434343] p-3 text-white">
       <div className="container mx-auto flex items-center justify-center text-center">
         <div className="flex w-20 items-center justify-center">
           <NavLink to="/">
             {({ isActive }) => (
               <div className="flex items-center justify-center">
                 <IoHome
-                  className={`self-center text-2xl hover:text-[#FAF6E9] ${isActive ? 'text-[#FAF6E9]' : 'text-[#948979]'}`}
+                  className={`self-center text-2xl hover:text-[#FFE5AD] ${isActive ? 'text-[#FFE5AD]' : 'text-[#948979]'}`}
                 />
               </div>
             )}
@@ -26,7 +26,7 @@ function Navbar() {
             {({ isActive }) => (
               <div className="flex items-center justify-center">
                 <FaShop
-                  className={`self-center text-2xl hover:text-[#FAF6E9] ${isActive ? 'text-[#FAF6E9]' : 'text-[#948979]'}`}
+                  className={`self-center text-2xl hover:text-[#FFE5AD] ${isActive ? 'text-[#FFE5AD]' : 'text-[#948979]'}`}
                 />
               </div>
             )}
@@ -38,7 +38,7 @@ function Navbar() {
             {({ isActive }) => (
               <div className="flex items-center justify-center">
                 <IoPersonCircle
-                  className={`self-center text-3xl hover:text-[#FAF6E9] ${isActive ? 'text-[#FAF6E9]' : 'text-[#948979]'}`}
+                  className={`self-center text-3xl hover:text-[#FFE5AD] ${isActive ? 'text-[#FFE5AD]' : 'text-[#948979]'}`}
                 />
               </div>
             )}
@@ -50,7 +50,7 @@ function Navbar() {
             {({ isActive }) => (
               <div className="flex items-center justify-center">
                 <FaFileAlt
-                  className={`self-center text-2xl hover:text-[#FAF6E9] ${isActive ? 'text-[#FAF6E9]' : 'text-[#948979]'}`}
+                  className={`self-center text-2xl hover:text-[#FFE5AD] ${isActive ? 'text-[#FFE5AD]' : 'text-[#948979]'}`}
                 />
               </div>
             )}
@@ -62,7 +62,7 @@ function Navbar() {
             {({ isActive }) => (
               <div className="flex items-center justify-center">
                 <MdAddToPhotos
-                  className={`self-center text-2xl hover:text-[#FAF6E9] ${isActive ? 'text-[#FAF6E9]' : 'text-[#948979]'}`}
+                  className={`self-center text-2xl hover:text-[#FFE5AD] ${isActive ? 'text-[#FFE5AD]' : 'text-[#948979]'}`}
                 />
               </div>
             )}
