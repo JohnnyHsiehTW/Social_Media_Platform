@@ -14,7 +14,7 @@
   </p>
   
   <h2>🪧 簡介 🪧</h2>
-  <p>專為模型玩家開創的社群交流平台，玩家可以在此盡情發表模型相關的內容。<br/>未來將會結合購物商城，交流的同時享受購買模型的樂趣！</p>
+  <p>專為模型玩家開創的社群交流平台，玩家可以在此盡情發表模型相關的內容。</p>
   <p>This is a social media platform builded for players of plastic models. You can share anything about plastic models.<br/>In the future, the platform will update the shopping center. Enjoy buying plastic models while sharing any topic with other players!</p>
   
   <img width='100%' src='https://cmncvclhjzmwzdvowmih.supabase.co/storage/v1/object/sign/project-screenshots/readme.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwcm9qZWN0LXNjcmVlbnNob3RzL3JlYWRtZS5qcGciLCJpYXQiOjE3NDcwMzcxNzQsImV4cCI6MTc3ODU3MzE3NH0.8awZO8UdtpozL-z1-GEXOidkjFaFNDxrV12NhDTo3ec'/>
