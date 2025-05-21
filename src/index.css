@@ -244,3 +244,18 @@
     color: black;
   }
 }
+
+/* Swiper 顏色客製化 */
+.swiper-button-prev,
+.swiper-button-next {
+  color: #dcc199;
+}
+
+.swiper-pagination-bullet {
+  background-color: #7a7163; /* gray-300 */
+  opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #dcc199; /* orange-500 */
+}

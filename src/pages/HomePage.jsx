@@ -33,6 +33,17 @@ function HomePage() {
   // 取得按讚狀態
   const { likedPostIds, handleToggleLike } = useUserLikedPosts(userId)
 
+  // 取得裝置寬度
+  const [showSwiperNav, setShowSwiperNav] = useState('')
+  useEffect(() => {
+    const updateWidth = () => {
+      setShowSwiperNav(window.innerWidth >= 768)
+    }
+    updateWidth()
+    window.addEventListener('resize', updateWidth)
+    return () => window.removeEventListener('resize', updateWidth)
+  }, [])
+
   return (
     <>
       <Header />
@@ -66,7 +77,7 @@ function HomePage() {
             return (
               <Card
                 key={post.id}
-                className="bg-card container mx-auto mb-5 border-0 text-white md:max-w-[680px]"
+                className="bg-card container mx-auto mb-5 overflow-visible border-0 text-white md:max-w-[680px]"
               >
                 <CardHeader>
                   <UserImage
@@ -82,7 +93,8 @@ function HomePage() {
                     slidesPerView={1}
                     pagination={{ clickable: true }}
                     centeredSlides={true}
-                    className="bg-background rounded-sm"
+                    navigation={showSwiperNav}
+                    className="bg-background relative rounded-sm select-none"
                   >
                     {post.img_urls.map((img) => {
                       return (
