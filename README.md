@@ -10,7 +10,7 @@
   </p>
   
   <p>
-    <a href='https://johnnyhsiehtw.github.io/Social_Media_Platform/' alt='進入網站體驗'>👉進入網站體驗</a>
+    <a href='https://johnnyhsiehtw.github.io/Social_Media_Platform/' alt='進入網站體驗'>👉進入網站體驗 <br/>( 具備 RWD 可使用手機版操作 )</a>
   </p>
   
   <h2>🪧 簡介 🪧</h2>
@@ -94,13 +94,6 @@ shadcn 提供預設樣式，可快速建置各項元件，並加以客製化以�
     </tbody>
   </table>
 </div>
-<hr/>
-
-### 🗓️ 更新計畫  
-1. 商城購物功能  
-   新增購物區塊，包含完整購物流程：加入購物車、結帳、交易紀錄。
-2. 文章分類及搜尋篩選功能  
-   新增文章分類，使用者可以搜尋及篩選想看的內容。
 <hr/>
 
 ### 📬 聯絡資訊  
