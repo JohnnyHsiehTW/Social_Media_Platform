@@ -43,7 +43,7 @@ function Market() {
       <div className={`mx-auto px-3 pt-17 pb-15 md:max-w-[680px] ${sytle.cardGrid}`}>
         {productsData.map((product) => {
           return (
-            <Card key={product.id} className={`mb-5 border-0 p-3 py-4 text-white`}>
+            <Card key={product.id} className={`mb-3 border-0 p-3 py-4 text-white`}>
               <div className="flex w-full gap-3">
                 <div className="flex flex-1">
                   <img
