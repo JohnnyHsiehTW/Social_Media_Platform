@@ -7,7 +7,7 @@ import { MdAddToPhotos } from 'react-icons/md'
 
 function Navbar() {
   return (
-    <div className="fixed bottom-0 z-20 flex w-full justify-center bg-[#313131] p-3 text-white">
+    <div className="fixed bottom-0 z-20 flex w-full justify-center bg-[#434343] p-3 text-white">
       <div className="container mx-auto flex items-center justify-center text-center">
         <div className="flex w-20 items-center justify-center">
           <NavLink to="/">
