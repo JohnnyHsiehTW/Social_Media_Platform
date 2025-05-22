@@ -14,7 +14,7 @@ function Navbar() {
             {({ isActive }) => (
               <div className="flex items-center justify-center">
                 <IoHome
-                  className={`self-center text-2xl hover:text-[#FFE5AD] ${isActive ? 'text-[#FFE5AD]' : 'text-[#948979]'}`}
+                  className={`self-center text-2xl transition hover:text-[#FAF6E9] ${isActive ? 'text-[#FAF6E9]' : 'text-[#948979]'}`}
                 />
               </div>
             )}
@@ -26,7 +26,7 @@ function Navbar() {
             {({ isActive }) => (
               <div className="flex items-center justify-center">
                 <FaShop
-                  className={`self-center text-2xl hover:text-[#FFE5AD] ${isActive ? 'text-[#FFE5AD]' : 'text-[#948979]'}`}
+                  className={`self-center text-2xl transition hover:text-[#FAF6E9] ${isActive ? 'text-[#FAF6E9]' : 'text-[#948979]'}`}
                 />
               </div>
             )}
@@ -38,7 +38,7 @@ function Navbar() {
             {({ isActive }) => (
               <div className="flex items-center justify-center">
                 <IoPersonCircle
-                  className={`self-center text-3xl hover:text-[#FFE5AD] ${isActive ? 'text-[#FFE5AD]' : 'text-[#948979]'}`}
+                  className={`self-center text-3xl transition hover:text-[#FAF6E9] ${isActive ? 'text-[#FAF6E9]' : 'text-[#948979]'}`}
                 />
               </div>
             )}
@@ -50,7 +50,7 @@ function Navbar() {
             {({ isActive }) => (
               <div className="flex items-center justify-center">
                 <FaFileAlt
-                  className={`self-center text-2xl hover:text-[#FFE5AD] ${isActive ? 'text-[#FFE5AD]' : 'text-[#948979]'}`}
+                  className={`self-center text-2xl transition hover:text-[#FAF6E9] ${isActive ? 'text-[#FAF6E9]' : 'text-[#948979]'}`}
                 />
               </div>
             )}
@@ -62,18 +62,13 @@ function Navbar() {
             {({ isActive }) => (
               <div className="flex items-center justify-center">
                 <MdAddToPhotos
-                  className={`self-center text-2xl hover:text-[#FFE5AD] ${isActive ? 'text-[#FFE5AD]' : 'text-[#948979]'}`}
+                  className={`self-center text-2xl transition hover:text-[#FAF6E9] ${isActive ? 'text-[#FAF6E9]' : 'text-[#948979]'}`}
                 />
               </div>
             )}
             {/* <div>新增貼文</div> */}
           </NavLink>
         </div>
-
-        {/* <NavLink to="/market">交易市集</NavLink>
-        <NavLink to="/memberInfo">會員中心</NavLink>
-        <NavLink to="/my-posts">我的貼文</NavLink>
-        <NavLink to="/new-post">新增貼文</NavLink> */}
       </div>
     </div>
   )

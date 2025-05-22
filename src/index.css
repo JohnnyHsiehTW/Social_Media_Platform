@@ -178,6 +178,7 @@
 @media (min-width: 768px) {
   .btn:hover {
     background-color: #7a7163;
+    transition: 0.3s;
   }
 }
 
@@ -191,6 +192,7 @@
   .btn-logout:hover {
     background-color: white;
     color: black;
+    transition: 0.3s;
   }
 }
 
@@ -208,6 +210,7 @@
   .btn-danger-trigger:hover {
     background-color: #ca2a2a;
     color: white;
+    transition: 0.3s;
   }
 }
 
@@ -221,6 +224,7 @@
   .btn-basic:hover {
     background-color: white;
     color: black;
+    transition: 0.3s;
   }
 }
 
@@ -235,6 +239,7 @@
   .btn-post:hover {
     background-color: white;
     color: black;
+    transition: 0.3s;
   }
 }
 
