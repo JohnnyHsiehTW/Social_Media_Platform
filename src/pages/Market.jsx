@@ -37,7 +37,6 @@ function Market() {
 
   const onFilter = (e) => {
     e.preventDefault()
-    console.log('target', e)
     const category = e.target.innerText.replace(/\n/g, ' ')
     setFilteredData(() => {
       return productsData.filter((product) => {
@@ -63,13 +62,9 @@ function Market() {
     setOpen(false)
     setcategoryActive(true)
   }
-
   const onCat = (id) => {
     setcategoryActive(id)
   }
-  console.log('categoryActive', categoryActive)
-
-  console.log(filteredData)
 
   // 加入購物車
   const handleAddCart = () => {
