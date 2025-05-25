@@ -9,8 +9,17 @@ import { FaAngleDown } from 'react-icons/fa'
 import { FaCashRegister } from 'react-icons/fa6'
 import { RiDeleteBin6Fill } from 'react-icons/ri'
 import { IoMdClose } from 'react-icons/io'
+import { useCartItems } from '@/hooks/useCarts'
+import { useGetUserId } from '@/hooks/useAuth'
 
 function Cart() {
+  // 取得使用者驗證
+  const { userId } = useGetUserId()
+
+  // 取得購物車資料
+  const { cartItems, isError, isLoading } = useCartItems(userId)
+  console.log('cartItems', cartItems)
+
   return (
     <>
       <Header />
@@ -36,42 +45,49 @@ function Cart() {
               </tr>
             </thead>
             <tbody>
-              <tr className="flex w-full items-center justify-center border-t-1 hover:bg-[#38332d]">
-                <td className="flex-1 p-1 text-center">
-                  <Checkbox className="cursor-pointer data-[state=checked]:border-[#fce8ca] data-[state=checked]:text-[#fce8ca]" />
-                </td>
-                <td className="flex-2 p-2">
-                  <img
-                    className="mx-auto w-20 rounded"
-                    src="https://cmncvclhjzmwzdvowmih.supabase.co/storage/v1/object/public/products-img/categories/HG/HG_Product_001/GQuuuuuux_001.jpg"
-                    alt=""
-                  />
-                </td>
-                <td className="w-15 flex-4 p-2">
-                  <p className="truncate">HG 1/144 GQuuuuuux 組裝模型HG 1/144 GQuuuuuux 組裝模型</p>
-                </td>
-                <td className="flex-1 p-2">
-                  <div className="flex items-center justify-center gap-1">
-                    <p>1</p>
-                    <div className="flex flex-col">
-                      <button type="button" className="cursor-pointer hover:text-[#debf8c]">
-                        <FaAngleUp />
+              {cartItems?.carts?.map((item) => {
+                return (
+                  <tr
+                    key={item.id}
+                    className="flex w-full items-center justify-center border-t-1 border-gray-300 transition hover:bg-[#38332d]"
+                  >
+                    <td className="flex-1 p-1 text-center">
+                      <Checkbox className="cursor-pointer data-[state=checked]:border-[#fce8ca] data-[state=checked]:text-[#fce8ca]" />
+                    </td>
+                    <td className="flex-2 p-2">
+                      <img
+                        className="mx-auto w-20 rounded"
+                        src={item.products.img_url[0].url}
+                        alt=""
+                      />
+                    </td>
+                    <td className="w-15 flex-4 p-2">
+                      <p className="truncate">{item.products.title}</p>
+                    </td>
+                    <td className="flex-1 p-2">
+                      <div className="flex items-center justify-center gap-1">
+                        <p>{item.quantity}</p>
+                        <div className="flex flex-col">
+                          <button type="button" className="cursor-pointer hover:text-[#debf8c]">
+                            <FaAngleUp />
+                          </button>
+                          <button type="button" className="cursor-pointer hover:text-[#debf8c]">
+                            <FaAngleDown />
+                          </button>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="flex-1 p-2">
+                      <p className="text-center">${item.products.price}</p>
+                    </td>
+                    <td className="flex-1 p-2 text-center">
+                      <button type="button" className="cursor-pointer p-2 hover:text-[#debf8c]">
+                        <IoMdClose className="text-2xl" style={{ height: '20px', width: '20px' }} />
                       </button>
-                      <button type="button" className="cursor-pointer hover:text-[#debf8c]">
-                        <FaAngleDown />
-                      </button>
-                    </div>
-                  </div>
-                </td>
-                <td className="flex-1 p-2">
-                  <p className="text-center">$700</p>
-                </td>
-                <td className="flex-1 p-2 text-center">
-                  <button type="button" className="cursor-pointer p-2 hover:text-[#debf8c]">
-                    <IoMdClose className="text-2xl" style={{ height: '20px', width: '20px' }} />
-                  </button>
-                </td>
-              </tr>
+                    </td>
+                  </tr>
+                )
+              })}
             </tbody>
           </table>
           <div className="mt-5 flex items-center justify-end gap-2">
