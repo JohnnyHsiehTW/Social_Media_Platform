@@ -3,14 +3,14 @@ import { useQuery } from '@tanstack/react-query'
 
 export function useCartItems(userId) {
   const {
-    data: cartItems = [],
+    data: carts = [],
     error: isError,
     isLoading,
   } = useQuery({
-    queryKey: ['cartItems', userId],
+    queryKey: ['carts', userId],
     queryFn: () => apiGetCarts(userId),
     enabled: !!userId,
   })
 
-  return { cartItems, isError, isLoading }
+  return { carts, isError, isLoading }
 }
