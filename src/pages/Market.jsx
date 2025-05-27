@@ -17,6 +17,10 @@ import { useEffect, useState } from 'react'
 import { apiGetProducts } from '@/supabaseService/apiProducts'
 import { toast } from 'sonner'
 import MarketSideNav from './components/MarketSideNav'
+import { apiAddOrUpdateCartItem } from '@/supabaseService/apiCarts'
+import { useCarts } from '@/hooks/useCarts'
+import { useGetUserId } from '@/hooks/useAuth'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 function Market() {
   const [productsData, setProdcuctsData] = useState([])
@@ -66,9 +70,48 @@ function Market() {
     setcategoryActive(id)
   }
 
+  // 取得購物車資料，待檢查
+  const { userId } = useGetUserId()
+
+  const queryClient = useQueryClient()
+  const { carts } = useCarts(userId)
+  console.log('carts', carts)
+  const cartItems = carts[0]?.cart_items || []
+  console.log('cartItems', cartItems)
+
+  const mutation = useMutation({
+    mutationFn: apiAddOrUpdateCartItem,
+    onSuccess: () => {
+      queryClient.invalidateQueries(['carts', userId])
+    },
+    onError: () => {
+      toast.error('更新購物車失敗')
+    },
+  })
+
   // 加入購物車
-  const handleAddCart = () => {
-    toast.success('加入購物車')
+  const handleAddCart = (productId) => {
+    const addedProduct = cartItems.find((item) => {
+      return item.products.id === productId
+    })
+    console.log('addedProduct', addedProduct)
+
+    if (addedProduct) {
+      // 更新
+      mutation.mutate({
+        isUpdate: true,
+        cartItemId: addedProduct.id,
+        quantity: addedProduct.quantity + 1,
+      })
+    } else {
+      // 新增
+      mutation.mutate({
+        isUpdate: false,
+        productId,
+        userId,
+        cartId: carts[0]?.id,
+      })
+    }
   }
 
   return (
@@ -110,9 +153,15 @@ function Market() {
                             $<span className="pl-1">{product.price}</span>
                           </p>
                           <button
+                            key={product.id}
                             type="button"
                             className="btn cursor-pointer rounded px-1"
-                            onClick={() => handleAddCart()}
+                            onClick={() => {
+                              const productId = product.id
+                              const cartId = carts[0]?.id
+                              handleAddCart(productId, userId, cartId)
+                            }}
+                            disabled={mutation.isLoading}
                           >
                             <div className="flex items-center">
                               <IoCartOutline className="text-3xl" />

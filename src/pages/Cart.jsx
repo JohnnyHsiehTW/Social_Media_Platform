@@ -9,16 +9,27 @@ import { FaAngleDown } from 'react-icons/fa'
 import { FaCashRegister } from 'react-icons/fa6'
 import { RiDeleteBin6Fill } from 'react-icons/ri'
 import { IoMdClose } from 'react-icons/io'
-import { useCartItems } from '@/hooks/useCarts'
+import { useCarts } from '@/hooks/useCarts'
 import { useGetUserId } from '@/hooks/useAuth'
+
+import { useEffect, useState } from 'react'
+import { BeatLoader } from 'react-spinners'
 
 function Cart() {
   // 取得使用者驗證
   const { userId } = useGetUserId()
 
   // 取得購物車資料
-  const { carts, isError, isLoading } = useCartItems(userId)
-  console.log('carts', carts)
+  const { carts, isError, isLoading } = useCarts(userId)
+
+  const [totalAmount, setTotalAmount] = useState(0)
+  useEffect(() => {
+    if (!isError && !isLoading && carts) {
+      setTotalAmount(carts[0]?.total_amount)
+    }
+  }, [carts, isError, isLoading])
+
+  const shippingFee = 100
 
   return (
     <>
@@ -44,52 +55,63 @@ function Cart() {
                 <th className="flex-1 p-2">操作</th>
               </tr>
             </thead>
-            <tbody>
-              {carts[0]?.cart_items?.map((item) => {
-                return (
-                  <tr
-                    key={item.id}
-                    className="bg-card mb-3 flex w-full items-center justify-center rounded py-2 transition hover:bg-[#38332d]"
-                  >
-                    <td className="flex-1 p-1 text-center">
-                      <Checkbox className="cursor-pointer data-[state=checked]:border-[#fce8ca] data-[state=checked]:text-[#fce8ca]" />
-                    </td>
-                    <td className="flex-2 p-2">
-                      <img
-                        className="mx-auto w-20 rounded"
-                        src={item.products?.img_url[0].url}
-                        alt={item.products?.title}
-                      />
-                    </td>
-                    <td className="w-15 flex-4 p-2">
-                      <p className="truncate">{item.products?.title}</p>
-                    </td>
-                    <td className="flex-1 p-2">
-                      <div className="flex items-center justify-center gap-1">
-                        <p>{item.quantity}</p>
-                        <div className="flex flex-col">
-                          <button type="button" className="cursor-pointer hover:text-[#debf8c]">
-                            <FaAngleUp />
-                          </button>
-                          <button type="button" className="cursor-pointer hover:text-[#debf8c]">
-                            <FaAngleDown />
-                          </button>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="flex-1 p-2">
-                      <p className="text-center">${item.products?.price}</p>
-                    </td>
-                    <td className="flex-1 p-2 text-center">
-                      <button type="button" className="cursor-pointer p-2 hover:text-red-400">
-                        <IoMdClose className="text-2xl" style={{ height: '20px', width: '20px' }} />
-                      </button>
-                    </td>
-                  </tr>
-                )
-              })}
-            </tbody>
           </table>
+          {carts[0]?.cart_items.length > 0 ? (
+            <table className="w-full">
+              <tbody>
+                {carts[0]?.cart_items?.map((item) => {
+                  return (
+                    <tr
+                      key={item.id}
+                      className="bg-card mb-3 flex w-full items-center justify-center rounded py-2 transition hover:bg-[#38332d]"
+                    >
+                      <td className="flex-1 p-1 text-center">
+                        <Checkbox className="cursor-pointer data-[state=checked]:border-[#fce8ca] data-[state=checked]:text-[#fce8ca]" />
+                      </td>
+                      <td className="flex-2 p-2">
+                        <img
+                          className="mx-auto w-20 rounded"
+                          src={item.products?.img_url[0].url}
+                          alt={item.products?.title}
+                        />
+                      </td>
+                      <td className="w-15 flex-4 p-2">
+                        <p className="truncate">{item.products?.title}</p>
+                      </td>
+                      <td className="flex-1 p-2">
+                        <div className="flex items-center justify-center gap-1">
+                          <p>{item.quantity}</p>
+                          <div className="flex flex-col">
+                            <button type="button" className="cursor-pointer hover:text-[#debf8c]">
+                              <FaAngleUp />
+                            </button>
+                            <button type="button" className="cursor-pointer hover:text-[#debf8c]">
+                              <FaAngleDown />
+                            </button>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="flex-1 p-2">
+                        <p className="text-center">${item.products?.price}</p>
+                      </td>
+                      <td className="flex-1 p-2 text-center">
+                        <button type="button" className="cursor-pointer p-2 hover:text-red-400">
+                          <IoMdClose
+                            className="text-2xl"
+                            style={{ height: '20px', width: '20px' }}
+                          />
+                        </button>
+                      </td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
+          ) : (
+            <div className="w-full p-10 text-center">
+              <p>目前購物車沒有商品</p>
+            </div>
+          )}
           <div className="mb-3 flex justify-between sm:justify-end">
             <div className="hidden sm:block sm:flex-5"></div>
             <div className="my-5 flex w-full flex-col gap-7 sm:flex-2">
@@ -99,11 +121,11 @@ function Cart() {
               </div>
               <div className="flex items-center justify-between border-b border-gray-600 p-1">
                 <p className="text-lg font-bold">商品金額</p>
-                <p className="pl-5 text-lg font-bold">${carts[0]?.total_amount}</p>
+                <p className="pl-5 text-lg font-bold">${totalAmount}</p>
               </div>
               <div className="flex items-center justify-between border-b border-gray-600 p-1">
                 <p className="text-lg font-bold">合計金額</p>
-                <p className="pl-5 text-lg font-bold">${carts[0]?.total_amount + 100}</p>
+                <p className="pl-5 text-lg font-bold">${totalAmount + shippingFee}</p>
               </div>
             </div>
           </div>
