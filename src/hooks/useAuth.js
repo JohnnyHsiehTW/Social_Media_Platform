@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import supabase from '@/supabaseService/supabaseClient'
 import { getUserId } from '@/supabaseService/apiAuth'
 import { toast } from 'sonner'
+import { apiCreateCart } from '@/supabaseService/apiCarts'
 
 // 登入
 export function useLogin() {
@@ -63,8 +64,8 @@ export function useRegister() {
       }
       if (signUpError) throw signUpError
 
+      // 新增使用者預設基本資料
       const userId = signUpData.user.id
-
       const { insertError } = await supabase
         .from('users')
         .insert([
@@ -77,6 +78,10 @@ export function useRegister() {
         ])
         .select()
       if (insertError) throw insertError
+
+      // 新增使用者購物車
+      apiCreateCart(userId)
+
       toast.success('已成功註冊，請至登入頁面重新登入')
     } catch (error) {
       if (error instanceof Error) {
