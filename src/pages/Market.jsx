@@ -75,9 +75,7 @@ function Market() {
 
   const queryClient = useQueryClient()
   const { carts } = useCarts(userId)
-  console.log('carts', carts)
   const cartItems = carts[0]?.cart_items || []
-  console.log('cartItems', cartItems)
 
   const mutation = useMutation({
     mutationFn: apiAddOrUpdateCartItem,
@@ -94,7 +92,6 @@ function Market() {
     const addedProduct = cartItems.find((item) => {
       return item.products.id === productId
     })
-    console.log('addedProduct', addedProduct)
 
     if (addedProduct) {
       // 更新

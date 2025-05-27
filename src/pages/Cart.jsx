@@ -14,12 +14,16 @@ import { useGetUserId } from '@/hooks/useAuth'
 
 import { useEffect, useState } from 'react'
 import { BeatLoader } from 'react-spinners'
+import { apiDeleteCartItems } from '@/supabaseService/apiCarts'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { toast } from 'sonner'
 
 function Cart() {
   // 取得使用者驗證
   const { userId } = useGetUserId()
 
   // 取得購物車資料
+  const queryClient = useQueryClient()
   const { carts, isError, isLoading } = useCarts(userId)
 
   const [totalAmount, setTotalAmount] = useState(0)
@@ -30,6 +34,26 @@ function Cart() {
   }, [carts, isError, isLoading])
 
   const shippingFee = 100
+
+  const mutation = useMutation({
+    mutationFn: apiDeleteCartItems,
+    onSuccess: () => {
+      queryClient.invalidateQueries(['carts', userId])
+    },
+    onError: () => {
+      toast.error('刪除商品失敗')
+    },
+  })
+
+  // 刪除購物車單一商品
+  const handleDelete = (cartItemId, productId) => {
+    mutation.mutate({
+      cartItemId,
+      productId,
+    })
+  }
+
+  // 清空購物車
 
   return (
     <>
@@ -70,7 +94,7 @@ function Cart() {
                       </td>
                       <td className="flex-2 p-2">
                         <img
-                          className="mx-auto w-20 rounded"
+                          className="bg-background mx-auto h-20 w-20 rounded object-contain"
                           src={item.products?.img_url[0].url}
                           alt={item.products?.title}
                         />
@@ -95,7 +119,15 @@ function Cart() {
                         <p className="text-center">${item.products?.price}</p>
                       </td>
                       <td className="flex-1 p-2 text-center">
-                        <button type="button" className="cursor-pointer p-2 hover:text-red-400">
+                        <button
+                          type="button"
+                          className="cursor-pointer p-2 hover:text-red-400"
+                          onClick={() => {
+                            const cartItemId = item.id
+                            const productId = item.products.id
+                            handleDelete(cartItemId, productId)
+                          }}
+                        >
                           <IoMdClose
                             className="text-2xl"
                             style={{ height: '20px', width: '20px' }}

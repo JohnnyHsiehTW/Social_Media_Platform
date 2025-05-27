@@ -75,8 +75,17 @@ export async function apiAddOrUpdateCartItem({
   }
 }
 
-// 刪除購物車商品
-export async function apiDeleteCartItems(productId) {
-  const { error } = await supabase.from('cart_items').delete().eq('product_id', productId)
+// 刪除購物車單一商品
+export async function apiDeleteCartItems({ cartItemId, productId }) {
+  const { error } = await supabase
+    .from('cart_items')
+    .delete()
+    .eq('id', cartItemId, 'product_id', productId)
+  if (error) throw error
+}
+
+// 清空購物車
+export async function apiClearCartItems(cartItemId) {
+  const { error } = await supabase.from('cart_items').delete().eq('id', cartItemId)
   if (error) throw error
 }
