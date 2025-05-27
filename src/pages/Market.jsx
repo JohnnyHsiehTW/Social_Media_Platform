@@ -152,15 +152,17 @@ function Market() {
                           <button
                             key={product.id}
                             type="button"
-                            className="btn cursor-pointer rounded px-1"
+                            className={`btn rounded px-1 ${mutation.status === 'pending' ? 'cursor-not-allowed' : 'cursor-pointer'}`}
+                            disabled={mutation.status === 'pending'}
                             onClick={() => {
                               const productId = product.id
                               const cartId = carts[0]?.id
                               handleAddCart(productId, userId, cartId)
                             }}
-                            disabled={mutation.isLoading}
                           >
-                            <div className="flex items-center">
+                            <div
+                              className={`flex items-center ${mutation.status === 'pending' ? 'text-gray-400' : ''}`}
+                            >
                               <IoCartOutline className="text-3xl" />
                               <p className="hidden pl-1 md:block">加入購物車</p>
                             </div>

@@ -7,7 +7,7 @@ export async function apiGetCarts(userId) {
     let { data: carts, error } = await supabase
       .from('carts')
       .select(
-        'id,total_amount,cart_items:cart_items(id,quantity,products:products(id,img_url,price,title))'
+        'id,total_amount,cart_items:cart_items(id,quantity,cart_id,products:products(id,img_url,price,title))'
       )
       .eq('user_id', userId)
     if (error) throw error
@@ -85,7 +85,7 @@ export async function apiDeleteCartItems({ cartItemId, productId }) {
 }
 
 // 清空購物車
-export async function apiClearCartItems(cartItemId) {
-  const { error } = await supabase.from('cart_items').delete().eq('id', cartItemId)
+export async function apiClearCartItems({ cartId }) {
+  const { error } = await supabase.from('cart_items').delete().eq('cart_id', cartId)
   if (error) throw error
 }

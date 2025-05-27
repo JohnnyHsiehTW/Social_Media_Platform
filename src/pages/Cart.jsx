@@ -13,8 +13,7 @@ import { useCarts } from '@/hooks/useCarts'
 import { useGetUserId } from '@/hooks/useAuth'
 
 import { useEffect, useState } from 'react'
-import { BeatLoader } from 'react-spinners'
-import { apiDeleteCartItems } from '@/supabaseService/apiCarts'
+import { apiClearCartItems, apiDeleteCartItems } from '@/supabaseService/apiCarts'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
 
@@ -35,32 +34,64 @@ function Cart() {
 
   const shippingFee = 100
 
-  const mutation = useMutation({
+  const deleteProduct = useMutation({
     mutationFn: apiDeleteCartItems,
     onSuccess: () => {
       queryClient.invalidateQueries(['carts', userId])
     },
     onError: () => {
-      toast.error('刪除商品失敗')
+      toast.error('刪除商品失敗，請稍後再試')
     },
   })
 
   // 刪除購物車單一商品
   const handleDelete = (cartItemId, productId) => {
-    mutation.mutate({
+    deleteProduct.mutate({
       cartItemId,
       productId,
     })
   }
 
+  const clearCart = useMutation({
+    mutationFn: apiClearCartItems,
+    onSuccess: () => {
+      queryClient.invalidateQueries(['carts', userId])
+      toast.success('已清空購物車')
+    },
+    onError: () => {
+      toast.error('清空購物車失敗，請稍後再試')
+    },
+  })
+
   // 清空購物車
+  const [cartId, setCartItemId] = useState('')
+  useEffect(() => {
+    if (carts.length > 0) {
+      setCartItemId(carts[0].id)
+    }
+  }, [carts])
+
+  const handleClearCart = (cartId) => {
+    clearCart.mutate({
+      cartId,
+    })
+  }
+
+  // 購物車結帳
+  const handleCheckout = () => {
+    toast.error('功能建置中')
+  }
 
   return (
     <>
       <Header />
       <div className="mx-auto p-3 pt-17 md:max-w-[1000px]">
         <div className="mb-3 flex justify-end">
-          <Button className="btn-basic border">
+          <Button
+            type="button"
+            className="btn-basic cursor-pointer border"
+            onClick={() => handleClearCart(cartId)}
+          >
             <RiDeleteBin6Fill />
             清空購物車
           </Button>
@@ -162,7 +193,11 @@ function Cart() {
             </div>
           </div>
           <div className="flex justify-center sm:justify-end">
-            <Button className="btn-basic border">
+            <Button
+              type="button"
+              className="btn-basic cursor-pointer border"
+              onClick={handleCheckout}
+            >
               <FaCashRegister />
               結帳
             </Button>
