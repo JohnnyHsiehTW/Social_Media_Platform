@@ -25,25 +25,45 @@
 <div align='start'>
   
   <p>帳號註冊／登入</p>
+  <p>使用 Supabase 提供的使用者驗證功能，完成帳號註冊及登入。</p>
   <img style='width:300px' src='https://cmncvclhjzmwzdvowmih.supabase.co/storage/v1/object/sign/project-screenshots/Register.gif?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwcm9qZWN0LXNjcmVlbnNob3RzL1JlZ2lzdGVyLmdpZiIsImlhdCI6MTc0NzA2MzM3MSwiZXhwIjoxNzc4NTk5MzcxfQ.JEc-7NhULSbEZ_S71QAWHqde4Kkh1A2xh3g1KJK--HU'/> <img style='width:300px' src='https://cmncvclhjzmwzdvowmih.supabase.co/storage/v1/object/sign/project-screenshots/Login.gif?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwcm9qZWN0LXNjcmVlbnNob3RzL0xvZ2luLmdpZiIsImlhdCI6MTc0NzA2MzcwMCwiZXhwIjoxNzc4NTk5NzAwfQ.Qg9KgxMagSvwAN4nrB_0gEFIZDts_nAq9nkz8DVD-NE'/>
 <br/><br/>
 <hr/>
 
   <p>編輯個人檔案／登出</p>
+  <p>使用 React Hook Form + zod 驗證，完成表單編輯功能，同時也能確保使用者輸入正確格式資料。</p>
+  <p>使用者可更換預設頭貼，並即時更新顯示更換後的圖片。</p>
   <img style='width:300px' src='https://cmncvclhjzmwzdvowmih.supabase.co/storage/v1/object/sign/project-screenshots/Edit_MemberInfo.gif?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwcm9qZWN0LXNjcmVlbnNob3RzL0VkaXRfTWVtYmVySW5mby5naWYiLCJpYXQiOjE3NDcwNjM3MjEsImV4cCI6MTc3ODU5OTcyMX0.OAczivAZVheS-9VWVyCX4GU2MVqCI_YqMhXfsTTzACk'/>
   <br/><br/>
   <hr/>
 
   <p>貼文發布／圖片上傳及預覽</p>
+  <p>上傳圖片後可以即時預覽，並透過 Swiper 檢視多張圖片。</p>
   <img style='width:300px' src='https://cmncvclhjzmwzdvowmih.supabase.co/storage/v1/object/sign/project-screenshots/Posting.gif?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwcm9qZWN0LXNjcmVlbnNob3RzL1Bvc3RpbmcuZ2lmIiwiaWF0IjoxNzQ3MDY1ODQ0LCJleHAiOjE3Nzg2MDE4NDR9.YyplxX48dJ-GqN22rPF2oh5_4Wl7C-jxARo49rAL-E0'/>
   <br/><br/>
   <hr/>
 
   <p>按讚／留言</p>
+  <p>使用者可對喜歡的貼文按讚，並於貼文留言，同時即時更新留言內容。</p>
   <img style='width:300px' src='https://cmncvclhjzmwzdvowmih.supabase.co/storage/v1/object/sign/project-screenshots/Like_Comments.gif?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwcm9qZWN0LXNjcmVlbnNob3RzL0xpa2VfQ29tbWVudHMuZ2lmIiwiaWF0IjoxNzQ3MDY2Njg3LCJleHAiOjE3Nzg2MDI2ODd9.dyuSSR3eHn72BUwBR0WCPGXV_ZQZqB8FY170KZdJVb0'/>
   <br/><br/>
   <hr/>
-  
+
+  <p>商品列表／篩選商品</p>
+  <p>可依照商品分類進行篩選，可將喜歡的商品加入購物車。</p>
+  <p>加入已經在購物車的商品則會增加購物車商品數量。</p>
+  <img style='height:400px' src='https://cmncvclhjzmwzdvowmih.supabase.co/storage/v1/object/sign/project-screenshots/product_filter_2.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5X2M0ZWE5MzY4LTQwYjUtNGNiNy1hOTIyLTY1MDkwZDM0NmZlMCJ9.eyJ1cmwiOiJwcm9qZWN0LXNjcmVlbnNob3RzL3Byb2R1Y3RfZmlsdGVyXzIucG5nIiwiaWF0IjoxNzQ4MzYwNDg5LCJleHAiOjE3Nzk4OTY0ODl9.MtR0SKFN5_PAnYUzZ9rvpy373Z4FUtQ5Y5TWSTbR5NA'/>
+  <img style='height:400px' src='https://cmncvclhjzmwzdvowmih.supabase.co/storage/v1/object/sign/project-screenshots/product_filter_1.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5X2M0ZWE5MzY4LTQwYjUtNGNiNy1hOTIyLTY1MDkwZDM0NmZlMCJ9.eyJ1cmwiOiJwcm9qZWN0LXNjcmVlbnNob3RzL3Byb2R1Y3RfZmlsdGVyXzEucG5nIiwiaWF0IjoxNzQ4MzYwNDczLCJleHAiOjE3Nzk4OTY0NzN9.L5iOieIdA8sekbXniLisbj6ndxsNYT8T1Cu5bZDe2j4'/>
+  <br/><br/>
+  <hr/>
+
+  <p>管理購物車</p>
+  <p>使用者可管理購物車，選擇刪除單項商品，或一次清空購物車。</p>
+  <p>此處運用了 React Query + useMutation，確保使用者看到的是即時正確的資料。</p>
+  <img style='width:500px' src='https://cmncvclhjzmwzdvowmih.supabase.co/storage/v1/object/sign/project-screenshots/cart.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5X2M0ZWE5MzY4LTQwYjUtNGNiNy1hOTIyLTY1MDkwZDM0NmZlMCJ9.eyJ1cmwiOiJwcm9qZWN0LXNjcmVlbnNob3RzL2NhcnQucG5nIiwiaWF0IjoxNzQ4MzYxNzE0LCJleHAiOjE3Nzk4OTc3MTR9.F8rhSBuztAQrpQZR-Ic9-ZebTe6wEeIii81G8as-jXo'/>
+  <br/><br/>
+  <hr/>
+
 </div>
 
 ### 🛠️ 技術棧
